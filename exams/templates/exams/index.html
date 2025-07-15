@@ -1,0 +1,21 @@
+{% extends "exams/base.html" %}
+{% block title %}Доступные экзамены{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Выберите экзамен</h2>
+<div class="row">
+    {% for exam in exams %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ exam.title }}</h5>
+                <p class="card-text">{{ exam.description|truncatewords:20 }}</p>
+                <a href="{% url 'take_exam' exam.pk %}" class="btn btn-primary">Начать</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Нет доступных экзаменов.</p>
+    {% endfor %}
+</div>
+{% endblock %}

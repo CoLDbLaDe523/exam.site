@@ -1,0 +1,26 @@
+{% extends "exams/base.html" %}
+{% block title %}Результаты экзаменов{% endblock %}
+
+{% block content %}
+<h2>Ваши результаты</h2>
+<table class="table table-bordered mt-3">
+    <thead class="table-light">
+        <tr>
+            <th>Экзамен</th>
+            <th>Оценка</th>
+            <th>Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in submissions %}
+        <tr>
+            <td>{{ submission.exam.title }}</td>
+            <td>{{ submission.score }}%</td>
+            <td>{{ submission.submitted_at|date:"d.m.Y H:i" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Вы ещё не проходили экзамены.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
